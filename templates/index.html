@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #3498db, #2980b9); /* Gradient background */
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.header {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  padding: 20px 0;
+}
+
+.header h2 {
+  font-size: 36px;
+  margin: 0;
+  color: #fff;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white card background */
+   padding: 20px;
+   margin-top: 20px;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   transition: transform 0.2s ease-in-out;
+   text-align: center; /* Center-align the content */
+}
+
+.card:hover {
+   transform: scale(1.02); /* Hover effect - slightly enlarge the card */
+}
+
+.card a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card a:hover {
+  color: #2980b9; /* Hover color */
+}
+
+.card h2 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+  text-align: center; /* Center-align h2 */
+}
+
+.card h5 {
+  color: #777;
+  margin-top: 5px;
+  text-align: center; /* Center-align h5 */
+}
+
+.card p {
+  color: #333;
+  margin: 10px 0; /* Compact margin */
+  text-align: center; /* Center-align p */
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Ayaan's Blog</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">  
+    {% for post in posts reversed %}
+    <div class="card">
+    <a href='/post/{{post.id}}'>
+        <h2>{{post.title}}</h2>
+        <h5>{{post.created_at|date:"F d, Y"}}</h5>
+        <p>{{post.body|truncatewords:20}}</p>
+    </a>    
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
